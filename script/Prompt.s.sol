@@ -2,8 +2,7 @@
 pragma solidity ^0.8.13;
 
 import {Script} from "forge-std/Script.sol";
-import {Prompt} from "../src/Prompt.sol";
-import {IAIOracle} from "OAO/contracts/interfaces/IAIOracle.sol";
+import {Yapster} from "../src/Yapster.sol";
 
 contract PromptScript is Script {
     address OAO_PROXY;
@@ -15,7 +14,8 @@ contract PromptScript is Script {
     function run() public {
         uint privateKey = vm.envUint("PRIVATE_KEY");
         vm.startBroadcast(privateKey);
-        new Prompt(IAIOracle(OAO_PROXY));
+        new Yapster(OAO_PROXY);
         vm.stopBroadcast();
     }
+    
 }
